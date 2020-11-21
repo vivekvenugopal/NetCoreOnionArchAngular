@@ -1,0 +1,19 @@
+.loginForm{
+    text-align: center;
+}
+.outerDiv
+{
+    color: #fff;
+    height: 400px;
+    width: 600px;
+    margin: 0px auto;
+    padding: 5px;
+}
+.leftDiv
+{
+    color: #000;
+    height: 400px;
+    width: 48%;
+    float: left;
+    height: 45%;
+}

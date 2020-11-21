@@ -1,0 +1,118 @@
+<div class="divForm">
+  <mat-vertical-stepper  #stepper linear>
+
+    <mat-step [stepControl]="basicDetailsFormGroup" label="Basic Details">
+      <form [formGroup]="basicDetailsFormGroup">
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Employee ID" formControlName="employeeId">
+            <mat-error *ngIf="basicDetailsFormGroup.get('employeeId').invalid">
+              {{getErrorMessage(this.basicDetailsFormGroup.get('employeeId'),'EmployeeId')}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="split">
+            <input matInput placeholder="First name" formControlName="firstName">
+            <mat-error *ngIf="basicDetailsFormGroup.get('firstName').invalid">
+              {{getErrorMessage(this.basicDetailsFormGroup.get('firstName'),'First Name')}}</mat-error>
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field class="split">
+            <input matInput placeholder="Last name" formControlName="lastName">
+            <mat-error *ngIf="basicDetailsFormGroup.get('lastName').invalid">
+              {{getErrorMessage(this.basicDetailsFormGroup.get('lastName'),'Last Name')}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="basicDetailsFormGroup.get('email').invalid">
+              {{getErrorMessage(this.basicDetailsFormGroup.get('email'),'Email')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput [matDatepicker]="DOJ" formControlName="doj" placeholder="Date Of Joining">
+            <mat-datepicker-toggle matSuffix [for]="DOJ"></mat-datepicker-toggle>
+            <mat-datepicker #DOJ></mat-datepicker>
+            <mat-error *ngIf="basicDetailsFormGroup.get('doj').invalid">
+              {{getErrorMessage(this.basicDetailsFormGroup.get('doj'),'Date Of Joining')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="PIFormGroup"  label="Personal Information">
+      <form [formGroup]="PIFormGroup">
+        <div class="row">
+          <mat-form-field>
+            <textarea matInput placeholder="Address" formControlName="address"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field>
+            <input matInput formControlName="dob" [matDatepicker]="DOB" placeholder="Date Of Birth">
+            <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
+            <mat-datepicker #DOB></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Skill Set">
+      <div class="row border">
+        <button mat-button (click)="openDialog()">
+          <mat-icon>add_circle</mat-icon>Add Skill
+        </button>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width:100%">
+          <thead>
+            <td></td>
+          </thead>
+          <ng-container matColumnDef="technology">
+            <th mat-header-cell *matHeaderCellDef> Technology. </th>
+            <td mat-cell *matCellDef="let element"> {{element.Technology}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fromDate">
+            <th mat-header-cell *matHeaderCellDef> From Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.StartDate  | date:'dd-MMM-yyyy' }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="toDate">
+            <th mat-header-cell *matHeaderCellDef> To Date </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.EndDate ? (element.EndDate | date:'dd-MMM-yyyy') :  "Present"  }} </td>
+          </ng-container>
+          <ng-container matColumnDef="remove">
+            <th mat-header-cell *matHeaderCellDef>
+            </th>
+            <td mat-cell *matCellDef="let element; let i = index;">
+              <button mat-icon-button (click)="removeSkill(i)" matTooltip="Remove this skill">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="skillsColumn"></tr>
+          <tr mat-row *matRowDef="let row; columns: skillsColumn;"></tr>
+          <tr mat-footer-row *matFooterRowDef="['footerMessage']"></tr>
+
+          <ng-container matColumnDef="footerMessage">
+            <td mat-footer-cell *matFooterCellDef colspan="4" class="footer">
+              {{dataSource.data && dataSource.data.length ? dataSource.data.length : 'No'}} skill(s) added
+            </td>
+          </ng-container>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+      </div>
+    </mat-step>
+    <mat-step label="Done">
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button (click)="onReset()">Reset</button>
+        <button mat-button (click)="onSubmit()" >Submit</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

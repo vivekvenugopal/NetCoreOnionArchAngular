@@ -1,0 +1,22 @@
+.divForm
+{
+    width: 40%;
+}
+.mat-vertical-content
+{
+padding-bottom: 0px!important;
+}
+.row  mat-form-field.split
+{
+    width: 48% !important;
+}
+.row mat-form-field
+{
+    width: 100%;
+}
+.columnTextStyle {
+    font-weight: bold;
+}
+.border{
+    border: 1px solid gray!important;
+}

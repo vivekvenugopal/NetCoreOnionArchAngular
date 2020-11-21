@@ -1,0 +1,6 @@
+.loadingStyle{
+    display: flex; justify-content: center; align-items: center
+}
+.alignCenter{
+    text-align: center;
+}

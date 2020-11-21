@@ -1,0 +1,37 @@
+<div class="outerDiv">
+    <div class="leftDiv">
+        <form [formGroup]="loginForm">
+            <div style="margin-left: 50px; font-weight: bold">
+                <mat-label>Login</mat-label>
+            </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-icon matPrefix>person</mat-icon>
+                    <input matInput placeholder="User Name" type="text" formControlName="username" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username?.errors?.required">Username is required</div>
+                    </div>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-icon matPrefix>lock</mat-icon>
+                    <input matInput placeholder="Password" type="password" formControlName="password"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password?.errors?.required">Password is required</div>
+                    </div>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary" mat-raised-button
+                    (click)="onSubmit()">Login</button>&nbsp;
+                <button type="button" class="btn btn-primary" mat-raised-button (click)="clear()">Clear</button>
+
+            </div>
+            <div *ngIf="loginError" class="alert alert-danger" style="color:red">{{loginError}}</div>
+        </form>
+
+    </div>
+</div>

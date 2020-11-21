@@ -1,0 +1,31 @@
+<mat-drawer-container class="container" autozise>
+  <mat-drawer #drawer class="sidenav" mode="over">
+    <button routerLink="/Employee" color="primary" mat-button (click)="drawer.close()">
+      <mat-icon>face</mat-icon>
+      Employee
+    </button>
+    <button routerLink="/User" color="primary" mat-button (click)="drawer.close()">
+      <mat-icon>contacts</mat-icon>
+      User
+    </button>
+  </mat-drawer>
+  <div class="sidenav-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="mainToolBar">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Demo Application</span>
+        <span class="spacer"></span>
+        <span></span>
+        <button routerLink="/Employee" mat-icon-button>
+          <mat-icon>home</mat-icon>
+        </button>
+        <button mat-icon-button (click)="logoutPrompt()">
+          <mat-icon>power_settings_new</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
