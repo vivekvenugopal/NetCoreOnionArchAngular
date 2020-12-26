@@ -25,7 +25,7 @@
         </div>
         <div class="row">
           <mat-form-field>
-            <input matInput placeholder="Email" formControlName="email">
+            <input matInput placeholder="Email (Format: name@xyz.com)" formControlName="email">
             <mat-error *ngIf="basicDetailsFormGroup.get('email').invalid">
               {{getErrorMessage(this.basicDetailsFormGroup.get('email'),'Email')}}
             </mat-error>
