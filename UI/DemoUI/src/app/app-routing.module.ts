@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: 'Employee/Create', component: CreateEmployeeComponent, canActivate: [AuthGuard] },
       { path: 'Employee/Edit/:id', component: CreateEmployeeComponent, canActivate: [AuthGuard] },
       { path: 'User', component: UserListComponent, canActivate: [AuthGuard] },
-      { path: '', redirectTo: '', pathMatch: 'full' }]
+      { path: '', redirectTo: '', pathMatch: 'full', canActivate: [AuthGuard]  }]
   }];
 
 @NgModule({
